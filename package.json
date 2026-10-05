@@ -1,0 +1,18 @@
+{
+  "name": "qeseh-stremio-addon",
+  "version": "1.0.1",
+  "private": true,
+  "description": "قصة عشق — Stremio addon",
+  "engines": {
+    "node": "22.x"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "test": "node test/addon.test.js",
+    "audit": "node scripts/audit.js",
+    "check": "node --check lib/addon.js && node --check lib/http.js && node --check api/index.js && node --check server.js"
+  },
+  "dependencies": {
+    "undici": "^7.16.0"
+  }
+}

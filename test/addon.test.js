@@ -1,0 +1,10 @@
+'use strict';
+const {test}=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path');
+const a=require('../lib/addon');
+const fixture=n=>fs.readFileSync(path.join(__dirname,'fixtures',n+'.html'),'utf8');
+test('four catalogs and original CSS background posters',()=>{assert.equal(a.manifest.catalogs.length,4);for(const [n,count] of [['series',40],['movies',30],['complete',30],['latest',30]]){const cards=a.cards(fixture(n),n==='movies'?'movie':'series');assert.equal(cards.length,count);assert.ok(cards.every(c=>c.poster&&c.name&&c.id));assert.equal(new Set(cards.map(c=>c.id)).size,count);}});
+test('site IDs round trip and reject foreign origin',()=>{const url='https://wwv.qeseh.com/clarus/omur-usta-episode-2/';assert.equal(a.urlFor(a.idFor(url)),url);assert.throws(()=>a.urlFor('qeseh_'+Buffer.from('//evil.test/').toString('base64url')));});
+test('all five providers are discovered from Base64 watch payload',()=>{const p=a.payload(fixture('episode'));assert.equal(p.servers.length,5);assert.deepEqual(p.servers.map(s=>a.provider(s).name),['Arab HD','turk','express','ok','Red HD']);});
+test('safe packed-script decoding finds media for three hosts',()=>{for(const n of ['arab','turk','red']){const urls=a.mediaURLs(fixture(n));assert.ok(urls.length>0,n);assert.ok(urls.every(u=>/^https:/.test(u)&&/m3u8/.test(u)));}});
+test('episode cards include whole observed season',()=>{const e=a.cards(fixture('show'),'series');assert.equal(e.length,32);assert.equal(e.filter(c=>/الحلقة/.test(c.name)).length,32);});
+test('catalog audit has complete poster fields across all pages',()=>{for(const n of ['series','movies','complete']){const items=JSON.parse(fs.readFileSync(path.join(__dirname,'../data',n+'.json')));assert.ok(items.every(c=>c.poster));assert.equal(new Set(items.map(c=>c.id)).size,items.length);}});

@@ -1,0 +1,26 @@
+{
+  "checkedAt": "2026-10-05T07:24:21.378Z",
+  "sections": [
+    {
+      "id": "series",
+      "name": "جميع المسلسلات",
+      "pages": 10,
+      "count": 400,
+      "missingPosters": 0
+    },
+    {
+      "id": "movies",
+      "name": "أفلام",
+      "pages": 5,
+      "count": 123,
+      "missingPosters": 0
+    },
+    {
+      "id": "complete",
+      "name": "مسلسلات كاملة",
+      "pages": 3,
+      "count": 70,
+      "missingPosters": 0
+    }
+  ]
+}

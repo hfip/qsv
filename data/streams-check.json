@@ -1,0 +1,48 @@
+{
+  "checkedAt": "2026-10-05T07:26:40.336Z",
+  "episode": "/clarus/omur-usta-episode-2/",
+  "providers": [
+    {
+      "name": "Arab HD",
+      "streams": 1
+    },
+    {
+      "name": "turk",
+      "streams": 1
+    },
+    {
+      "name": "express",
+      "streams": 1
+    },
+    {
+      "name": "ok",
+      "streams": 0,
+      "error": "Unavailable in server region"
+    },
+    {
+      "name": "Red HD",
+      "streams": 1
+    }
+  ],
+  "checks": [
+    {
+      "name": "قصة عشق | Arab HD",
+      "host": "trkarb-cdn1-fkd.artrk.online",
+      "hls": true
+    },
+    {
+      "name": "قصة عشق | turk",
+      "host": "arbtrk-cdn1-zmc.artrk.online",
+      "hls": true
+    },
+    {
+      "name": "قصة عشق | express",
+      "error": "curl: (22) The requested URL returned error: 403\n"
+    },
+    {
+      "name": "قصة عشق | Red HD",
+      "host": "ngr2dnwrdasv7gvg.cdn-centaurus.com",
+      "hls": true
+    }
+  ]
+}
